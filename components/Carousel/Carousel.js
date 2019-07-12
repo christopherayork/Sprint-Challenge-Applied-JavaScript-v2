@@ -54,7 +54,6 @@ function carouselComponent(pics) {
 
 function moveLeft() {
   let carousel = document.querySelector('.carousel'),
-      pics = carousel.querySelector('img'),
       current = carousel.querySelector(`img[data-number='${showing}']`),
       next = current.previousSibling;
   if(next.tagName !== 'IMG') next = carousel.lastChild.previousSibling;
@@ -65,7 +64,6 @@ function moveLeft() {
 
 function moveRight() {
   let carousel = document.querySelector('.carousel'),
-      pics = carousel.querySelector('img'),
       current = carousel.querySelector(`img[data-number='${showing}']`),
       next = current.nextSibling;
   if(next.tagName !== 'IMG') next = carousel.firstChild.nextSibling;
