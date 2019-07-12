@@ -44,10 +44,10 @@ function carouselComponent(pics) {
   let container = document.querySelector('.carousel-container');
   container.appendChild(carousel);
 
-  leftBtn.addEventListener('click', e => {
+  leftBtn.addEventListener('click', () => {
     moveLeft();
   });
-  rightBtn.addEventListener('click', e => {
+  rightBtn.addEventListener('click', () => {
     moveRight();
   });
 }
