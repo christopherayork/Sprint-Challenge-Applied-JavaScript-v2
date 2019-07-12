@@ -1,3 +1,5 @@
+import createElement from "../../Utility.js";
+
 /* If You've gotten this far, you're on your own! Although we will give you some hints:
     1. You will need to write a function that creates the carousel component, you will find the HTML below.
     2. You will need to grab a reference to all of the images
@@ -17,3 +19,59 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+let images = [
+    './assets/carousel/computer.jpeg',
+    './assets/carousel/mountains.jpeg',
+    './assets/carousel/trees.jpeg',
+    './assets/carousel/turntable.jpeg'
+];
+let showing = 0;
+
+function carouselComponent(pics) {
+  let carousel = createElement('div', 'carousel'),
+      leftBtn = createElement('div', 'left-button', '<'),
+      rightBtn = createElement('div', 'right-button', '>');
+  carousel.appendChild(leftBtn);
+  pics.forEach((image, index) => {
+    let element = createElement('img');
+    element.src = image;
+    element.dataset.number = index;
+    if(index === 0) element.style.display = 'inline';
+    carousel.appendChild(element);
+  });
+  carousel.appendChild(rightBtn);
+  let container = document.querySelector('.carousel-container');
+  container.appendChild(carousel);
+
+  leftBtn.addEventListener('click', e => {
+    moveLeft();
+  });
+  rightBtn.addEventListener('click', e => {
+    moveRight();
+  });
+}
+
+function moveLeft() {
+  let carousel = document.querySelector('.carousel'),
+      pics = carousel.querySelector('img'),
+      current = carousel.querySelector(`img[data-number='${showing}']`),
+      next = current.previousSibling;
+  if(next.tagName !== 'IMG') next = carousel.lastChild.previousSibling;
+  current.style.display = 'none';
+  next.style.display ='inline';
+  showing = next.dataset.number;
+}
+
+function moveRight() {
+  let carousel = document.querySelector('.carousel'),
+      pics = carousel.querySelector('img'),
+      current = carousel.querySelector(`img[data-number='${showing}']`),
+      next = current.nextSibling;
+  if(next.tagName !== 'IMG') next = carousel.firstChild.nextSibling;
+  current.style.display = 'none';
+  next.style.display ='inline';
+  showing = next.dataset.number;
+}
+
+carouselComponent(images);

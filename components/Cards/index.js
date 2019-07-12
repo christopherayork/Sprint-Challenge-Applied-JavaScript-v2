@@ -31,7 +31,6 @@ axios.get(backend_url).then(request => {
 
 function articleComponent(promise) {
   let cards_container = document.querySelector('.cards-container');
-  console.log(promise.data.articles.javascript[0].authorPhoto);
   for(let entry in promise.data.articles) {
     let array = promise.data.articles[entry];
     array.forEach(section => {
